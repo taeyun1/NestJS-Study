@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Board } from './board.model';
+import { Board, BoardStatus } from './board.model';
+import {v1 as uuid} from 'uuid'; // uuid버전중에 v1버전 사용
 
 @Injectable()
 export class BoardsService {
@@ -10,4 +11,15 @@ export class BoardsService {
 	getAllBoards(): Board[] {
 		return this.boards;
 	}
+
+	// 게시물 ID는 유니크 해야함, 데이터베이스를 사용하면 알아서 해주지만,
+	// 로컬로 사용하면 임의로 유니크한 값을 줘야함, 여러방법이 있지만 uuid모듈을 이용해 유니크한값 주기.
+	createBoard(title: string, description: string) {
+		const board: Board = {
+			id: uuid(), // 유니크한 id값
+			title, // title : title -> 이거랑 같음
+			description,
+			status: BoardStatus.PUBLIC // 기본값으로 
+		}
+	} 
 }
