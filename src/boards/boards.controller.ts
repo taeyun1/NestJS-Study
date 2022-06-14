@@ -1,5 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
-import { Board } from './board.model';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Board, BoardStatus } from './board.model';
 import { BoardsService } from './boards.service';
 import { CreatBoardDto } from './dto/cerate-board.dto';
 
@@ -21,7 +21,7 @@ export class BoardsController {
 				return this.boardsService.createBoard(createBoardDto);
 		}
 
-		// ID값으로 특정 게시물 가져오기
+		// ID값으로 특정 게시물 가져오기 기능
 		// http://localhost:3000?id=유니크한id
 		// @Param로 가져올 수 있음
 		// http://localhost:3000?id=유니크한id&title 이렇게 파라미터가 2개면 (id, title)
@@ -31,9 +31,18 @@ export class BoardsController {
 			return this.boardsService.getBoardById(id);
 		}
 
-		// ID값으로 특정 게시물 삭제하기
+		// ID값으로 특정 게시물 삭제하기 기능
 		@Delete('/:id')
 		deleteBoard(@Param('id') id: string): void {
 			this.boardsService.deleteBoard(id);
+		}
+
+		// 특정 게시물 상태 업데이트 기능
+		@Patch('/:id/status')
+		updateBoardStatus(
+			@Param('id') id: string,
+			@Body('status') status: BoardStatus,
+		) {
+			return this.boardsService.updateBoardStatus(id, status);
 		}
 }
