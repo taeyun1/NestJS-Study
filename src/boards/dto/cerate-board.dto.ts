@@ -13,4 +13,4 @@ export class CreatBoardDto {
 	title: string;
 	description: string;
 }
-// ↑이렇게 DTO를 만들었으면 실제 Controller와 Service에서 Dto를 적용, 먼저 Controller에 적용
+/// ↑이렇게 DTO를 만들었으면 실제 Controller와 Service에서 Dto를 적용, 먼저 Controller에 적용
