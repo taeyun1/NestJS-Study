@@ -15,7 +15,7 @@ export class BoardsController {
 
 	@Post() 
 		createBoard(
-			@Body('title') createBoardDto: CreatBoardDto
+			@Body() createBoardDto: CreatBoardDto
 			): Board {
 				// boardsService의 createBoard를 가져와 title, description 전달
 				return this.boardsService.createBoard(createBoardDto);
