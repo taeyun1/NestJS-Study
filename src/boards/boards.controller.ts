@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { Board } from './board.model';
 import { BoardsService } from './boards.service';
 import { CreatBoardDto } from './dto/cerate-board.dto';
@@ -19,5 +19,14 @@ export class BoardsController {
 			): Board {
 				// boardsService의 createBoard를 가져와 title, description 전달
 				return this.boardsService.createBoard(createBoardDto);
+		}
+
+		// http://localhost:3000?id=유니크한id
+		// @Param로 가져올 수 있음
+		// http://localhost:3000?id=유니크한id&title 이렇게 파라미터가 2개면 (id, title)
+		// 한꺼번에 가져올때는 findOne(@Param() params: string)
+		@Get('/:id')
+		getBoardById(@Param('id') id: string): Board {
+			return this.boardsService.getBoardById(id);
 		}
 }
