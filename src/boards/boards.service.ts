@@ -21,5 +21,9 @@ export class BoardsService {
 			description,
 			status: BoardStatus.PUBLIC // 기본값으로 
 		}
+
+		// 게시물을 작성하고, 게시물을 생성하면 boards 배열에 넣어줘야함
+		this.boards.push(board);
+		return board;
 	} 
 }
