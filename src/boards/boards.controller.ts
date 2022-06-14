@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { Board } from './board.model';
 import { BoardsService } from './boards.service';
+import { CreatBoardDto } from './dto/cerate-board.dto';
 
 @Controller('boards')
 export class BoardsController {
@@ -14,14 +15,9 @@ export class BoardsController {
 
 	@Post() 
 		createBoard(
-			@Body('title') title: string,
-			@Body('description') description: string,
+			@Body('title') createBoardDto: CreatBoardDto
 			): Board {
 				// boardsService의 createBoard를 가져와 title, description 전달
-				return this.boardsService.createBoard(title, description);
-
+				return this.boardsService.createBoard(createBoardDto);
 		}
-	
-
-
 }
