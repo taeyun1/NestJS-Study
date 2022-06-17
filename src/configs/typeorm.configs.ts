@@ -1,8 +1,8 @@
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
 
 // 1. TypeORM 설정 파일 생성
-// 2. TypeORM 설정 파일 작성
 
+// 2. TypeORM 설정 파일 작성
 export const typeORMConfig : TypeOrmModuleOptions = {
 	type : 'postgres',
 	host : 'localhost',
