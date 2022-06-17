@@ -1,10 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Board, BoardStatus } from './board.model';
+import { BoardStatus } from './board.status.enum.';
 import {v1 as uuid} from 'uuid'; // uuid버전중에 v1버전 사용
 import { CreatBoardDto } from './dto/cerate-board.dto';
 
 @Injectable()
 export class BoardsService {
+	/*
 	private boards: Board[] = [];
 
 	// 모든 게시물 데이터 가져오기
@@ -59,4 +60,5 @@ export class BoardsService {
 		board.status = status; // 수정한 status를 board.status에 덮어씀
 		return board; // 업데이트된 게시물 반환
 	}
+	*/
 }

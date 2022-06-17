@@ -1,5 +1,5 @@
 import { BadRequestException, PipeTransform } from '@nestjs/common';
-import { BoardStatus } from '../board.model';
+import { BoardStatus } from '../board.status.enum.';
 
 // 커스텀 파이프로 실제 기능 구현하기
 // 구현 할 기능 : 상태(Status)는 PUBLIC과 PRIVATE만 올 수 있기 때문에, 이외 값이 오면 에러 보내기.

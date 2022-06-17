@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
-import { Board, BoardStatus } from './board.model';
+import { BoardStatus } from './board.status.enum.';
 import { BoardsService } from './boards.service';
 import { CreatBoardDto } from './dto/cerate-board.dto';
 import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipes';
@@ -8,6 +8,7 @@ import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipes
 export class BoardsController {
 	constructor(private boardsService: BoardsService) {}
 
+	/*
 	// 모든 게시물을 가져오는 핸들러 생성
 	@Get('/')
 	getAllBoards(): Board[] {
@@ -48,4 +49,5 @@ export class BoardsController {
 		) {
 			return this.boardsService.updateBoardStatus(id, status);
 		}
+		*/
 }
