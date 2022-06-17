@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { Board, BoardStatus } from './board.model';
 import { BoardsService } from './boards.service';
 import { CreatBoardDto } from './dto/cerate-board.dto';
@@ -13,7 +13,9 @@ export class BoardsController {
 		return this.boardsService.getAllBoards();
 	}
 
-	@Post() 
+	@Post()
+	// ValidationPipe : 유효성 체크를 하고 싶을 때 사용
+	@UsePipes(ValidationPipe) // DTO에 넣어준것들이 자동으로 title과 description이 있는지 없는지 유효성 체크를 해줌
 		createBoard(
 			@Body() createBoardDto: CreatBoardDto
 			): Board {

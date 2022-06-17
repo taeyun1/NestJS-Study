@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Board, BoardStatus } from './board.model';
 import {v1 as uuid} from 'uuid'; // uuid버전중에 v1버전 사용
 import { CreatBoardDto } from './dto/cerate-board.dto';
@@ -34,8 +34,16 @@ export class BoardsService {
 
 	// ID값으로 특정 게시물 가져오기
 	getBoardById(id: string): Board {
-		return this.boards.find((board) => board.id === id);
-	}
+		 const found = this.boards.find((board) => board.id === id);
+
+		 // 특정 게시물을 ID로 가져올때 없는 ID의 게시물을 가져오면 없다고, 에러메세지 클라로 보내주기
+		 // 에러를 표출 해주기 위해서는 NotFoundException 예외 인스턴스를 생성하여 사용
+		 if(!found) {
+			 throw new NotFoundException(`${id}의 해당 게시물을 찾을 수 없습니다. `);
+		 }
+		 return found;
+
+		}
 
 	// ID값으로 특정 게시물 삭제하기
 	deleteBoard(id: string): void {
