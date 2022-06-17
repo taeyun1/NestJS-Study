@@ -32,7 +32,7 @@ export class BoardsService {
 		return board;
 	} 
 
-	// ID값으로 특정 게시물 가져오기
+	// ID값으로 특정 게시물 가져오기(찾기)
 	getBoardById(id: string): Board {
 		 const found = this.boards.find((board) => board.id === id);
 
@@ -47,7 +47,10 @@ export class BoardsService {
 
 	// ID값으로 특정 게시물 삭제하기
 	deleteBoard(id: string): void {
-		this.boards = this.boards.filter((board) => board.id !== id);
+		// ID가 없는 게시물을 삭제하려고 할 때, getBoardById로 체크 후 에러값 날려 주기
+		// getBoardById를 이용해 지우려고 하는 게시물이 있는지 체크 후 있으면 지우고, 없으면 에러 문구 날리기
+		const found = this.getBoardById(id);
+		this.boards = this.boards.filter((board) => board.id !== found.id);
 	}
 
 	// 특정 게시물 상태 업데이트
